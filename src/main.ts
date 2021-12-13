@@ -10,8 +10,6 @@ async function bootstrap() {
     logger: ['verbose'],
   });
 
-  app.setGlobalPrefix('root');
-
   const config = new DocumentBuilder()
     .setTitle('Api')
     .setDescription('swagger api')
