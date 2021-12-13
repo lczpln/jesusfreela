@@ -6,7 +6,11 @@ import * as helmet from 'helmet';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['verbose'],
+  });
+
+  app.setGlobalPrefix('root');
 
   const config = new DocumentBuilder()
     .setTitle('Api')
