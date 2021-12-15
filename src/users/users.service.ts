@@ -23,9 +23,11 @@ export class UsersService {
   }
 
   async findOne(username: string) {
-    return await this.userModel.findOne({
-      $or: [{ username }, { email: username }],
-    });
+    return await this.userModel
+      .findOne({
+        $or: [{ username }, { email: username }],
+      })
+      .select('password');
   }
 
   async getUserProfile(user: Partial<User>) {
