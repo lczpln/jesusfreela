@@ -15,8 +15,16 @@ export class FileService {
     return createdFile.save();
   }
 
-  async findAll() {
-    return this.fileModel.find({});
+  async findAll(skip: number, limit: number) {
+    skip = skip || 0;
+    limit = limit || 10;
+
+    const data = await this.fileModel.find({}).skip(skip).limit(limit);
+    const count = data.length;
+    const totalCount = await this.fileModel.count();
+    const totalPages = Math.ceil(totalCount / limit);
+
+    return { data, count, totalCount, totalPages };
   }
 
   async findOne(id: string) {

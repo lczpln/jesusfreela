@@ -7,7 +7,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: ['verbose'],
+    logger: ['warn', 'error', 'log', 'verbose'],
   });
 
   const config = new DocumentBuilder()

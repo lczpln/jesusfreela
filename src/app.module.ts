@@ -9,7 +9,10 @@ import { FileModule } from './file/file.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath:
+        process.env.NODE_ENV !== 'production'
+          ? '.development.env'
+          : '.production.env',
       isGlobal: true,
     }),
     MongooseModule.forRoot(
