@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type FileDocument = File & Document;
+export type CustomerDocument = Customer & Document;
 
 @Schema({ timestamps: true })
-export class File {
+export class Customer {
   @Prop()
   joint: string;
 
@@ -87,4 +87,4 @@ export class File {
   __v: number;
 }
 
-export const FileSchema = SchemaFactory.createForClass(File);
+export const CustomerSchema = SchemaFactory.createForClass(Customer);
