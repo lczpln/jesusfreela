@@ -13,7 +13,7 @@ export class CreateUserDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  @MinLength(6)
+  @MinLength(3)
   @IsString()
   fullName: string;
 

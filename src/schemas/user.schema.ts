@@ -27,9 +27,6 @@ export class User {
   __v: number;
 
   @Prop({ select: false })
-  _id: string;
-
-  @Prop({ select: false })
   createdAt: Date;
 
   @Prop({ select: false })
