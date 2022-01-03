@@ -17,16 +17,29 @@ export class CustomerService {
     return createdCustomer.save();
   }
 
-  async findAll(skip: number, limit: number) {
+  async findAll(
+    skip: number,
+    limit: number,
+    filter: any = undefined,
+    sort: any = undefined,
+  ) {
     skip = skip || 0;
     limit = limit || 10;
 
-    const data = await this.customerModel.find({}).skip(skip).limit(limit);
+    const data = await this.customerModel
+      .find(filter ? filter : {})
+      .skip(skip)
+      .limit(limit)
+      .sort(sort);
+
     const count = data.length;
     const totalCount = await this.customerModel.count();
-    const totalPages = Math.ceil(totalCount / limit);
+    const totalRecords = await this.customerModel
+      .find(filter ? filter : {})
+      .count();
+    const totalPages = Math.ceil(totalRecords / limit);
 
-    return { data, count, totalCount, totalPages };
+    return { items: data, count, totalRecords, totalPages, totalCount };
   }
 
   async findOne(id: string) {

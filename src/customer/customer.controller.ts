@@ -28,8 +28,8 @@ export class CustomerController {
   }
 
   @Get()
-  findAll(@Query() { skip, limit }: FindAllDto) {
-    return this.customerService.findAll(skip, limit);
+  findAll(@Query() { skip, limit, filter, sort }: FindAllDto) {
+    return this.customerService.findAll(skip, limit, filter, sort);
   }
 
   @Get(':id')
